@@ -61,8 +61,8 @@
         // predict can take in an image, video or canvas html element
         const prediction = await model.predict(webcam.canvas);
         for (let i = 0; i < maxPredictions; i++) {
-            var audio = new Audio('1.mp3');
-            audio.play();
+            // var audio = new Audio('1.mp3');
+            // audio.play();
             const classPrediction =
                 prediction[i].className + ": " + prediction[i].probability.toFixed(2);
             labelContainer.childNodes[i].innerHTML = classPrediction;
