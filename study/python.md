@@ -1,4 +1,0 @@
-# Data Type
-
-## Tuple
-
