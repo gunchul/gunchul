@@ -20,10 +20,15 @@ $("#myInput").on("keyup", function() {
 });
 });
 </script>
+
 <style>
+* {
+  box-sizing: border-box;
+}
+
 #myInput {
-  background-image: url("/css/searchicon.png");
-  background-position: 10px 12px;
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
   background-repeat: no-repeat;
   width: 100%;
   font-size: 16px;
@@ -33,40 +38,43 @@ $("#myInput").on("keyup", function() {
 }
 
 table {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-td, a {
+  border-collapse: collapse;
+  width: 100%;
   border: 1px solid #ddd;
-  margin-top: -1px; /* Prevent double borders */
-  background-color: #f6f6f6;
-  padding: 0px;
-  text-decoration: none;
   font-size: 18px;
-  color: black;
-  display: block
 }
 
-td, a:hover:not(.header) {
-  background-color: #eee;
+td {
+  text-align: left;
+  padding: 12px;
 }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
+tr {
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+a {
+  
+  margin-top: -1px; /* Prevent double borders */
+  
+  
+  text-decoration: none; /* Remove default text underline */
+  font-size: 18px; /* Increase the font-size */
+  color: black; /* Add a black text color */
+  
 }
 
 </style>
 </head><body>
 
 <input id="myInput" type="text" placeholder="Search..">
-<br><br>
+<br>
 
 <table>
-<thead>
-</thead>
-<tbody id="myTable">
 <tr>
     <td><a href='http://ares-rod.com/item/178' target='_blank'>신상품 바다낚시대 드림 유메시즈쿠</a></td>
 </tr>
@@ -6244,7 +6252,6 @@ tr:nth-child(even) {
 <tr>
     <td><a href='https://sunline.co.jp/goods/2222/' target='_blank'>FUJITOKI 용품 SFB-0415</a></td>
 </tr>
-</tbody>
 </table>
 </body>
 </html>
