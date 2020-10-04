@@ -21,7 +21,7 @@ $(document).ready(function(){
         str += "<td>" + eval(values[1]) + "</td>";
         str += "<td>" + values[2] + "</td>";
         str += "<td>" + values[3] + "</td>";
-        str += "<td><input type=button id='RemoveButton' value='Remove' class='btn btn-primary'/></td>";
+        str += "<td><input type=button id='RemoveButton' value='Remove' class='btn btn-primary btn-sm'/></td>";
         str += "</tr>";
         $("#table_logs tbody").append(str);
         id = id + 1;

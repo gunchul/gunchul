@@ -7,28 +7,36 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="./share.js"></script>   
+        <script src="./share.js"></script>
+        <link rel="stylesheet" href="./share.css">
     </head>
     <body>
-        <input type="text" class="form-control form-control" value="차량 0.500*200*2 A,B A,B,C,D" id="log" />
-        <br>
-        <input type="button" id="button_add" value="추가" class="btn btn-primary btn-block"/>
-        <br>
-        <table id="table_logs" class="table table-striped">
+        <div id="div_input">
+        <input type="text" class="form-control form-control" value="차량 0.370*200 앤디 알렉스,앤디" id="log" />
+        </div>
+
+        <div id="div_button">
+        <input type="button" id="button_add" value="추가" class="btn btn-primary btn-block" />
+        </div>
+
+        <div id="div_logs" class="table-responsive">
+        <table id="table_logs" class="table table-sm table-striped table-hover">
             <thead>
                 <tr>
                   <th>항목</th>
-                  <th>금액계산</th>
+                  <th>계산</th>
                   <th>금액</th>
                   <th>제공자</th>
                   <th>사용자</th>
                   <th>삭제</th>
                 </tr>
-              </thead>
+            </thead>
             <tbody>
             </tbody>
         </table>
-        <br>
+        </div>
+
+        <div id="div_results">
         <table id="table_results" class="table table-striped">
             <thead>
                 <th>이름</th>
@@ -37,5 +45,7 @@
             <tbody>
             </tbody>
         </table>
+        </div>
+
     </body>
 </html>
