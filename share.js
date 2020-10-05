@@ -1,7 +1,7 @@
 /* aaa 10*10 a,b A,B,C */ 
 $(document).ready(function(){
     var id = 0;
-    
+
     $("#table_logs").on("click", "#RemoveButton", function() {
         $(this).closest("tr").remove();
         results_update();
@@ -72,6 +72,9 @@ $(document).ready(function(){
             str += "<td>" + persons[k].toFixed(2) + "</td>";
             str += "</tr>";
             $("#table_results tbody").append(str);
-         }
+        }
+        $("#div_date").children().remove();
+        src = "<p>" + Date() + "</p>";
+        $("#div_date").append(src);
     }
 });
