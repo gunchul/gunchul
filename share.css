@@ -1,3 +1,7 @@
 * { 
-    padding: 10px;
+    padding: 2px;
+}
+
+#table_logs {
+    font-size: 0.75em;
 }

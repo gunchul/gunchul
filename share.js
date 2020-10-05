@@ -21,7 +21,7 @@ $(document).ready(function(){
         str += "<td>" + eval(values[1]) + "</td>";
         str += "<td>" + values[2] + "</td>";
         str += "<td>" + values[3] + "</td>";
-        str += "<td><input type=button id='RemoveButton' value='Remove' class='btn btn-primary btn-sm'/></td>";
+        str += "<td><input type=button id='RemoveButton' value='삭제' class='btn btn-primary btn-sm'/></td>";
         str += "</tr>";
         $("#table_logs tbody").append(str);
         id = id + 1;
@@ -29,7 +29,6 @@ $(document).ready(function(){
     });
 
     function results_update(){
-    //$("#button_calculate").click(function(){
         var i,j;
         var persons = {};
         var num_rows = $('#table_logs tbody tr').length;
