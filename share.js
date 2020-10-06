@@ -7,13 +7,24 @@ $(document).ready(function(){
         results_update();
      });
 
-    $("#button_add").click(function(){           
+    $("#button_add").click(function(){
+        var input_kind = $("#input_kind").val();
+        var input_cost = $("#input_cost").val();
+        var input_payer = $("#input_payer").val();
+        var input_user = $("#input_user").val();
+
+        if (input_kind.length == 0 || input_payer.length == 0 || input_user.length == 0)
+        {
+            alert("값을 전부 입력하세요.");
+            return;
+        }
+
         var str = "<tr id=" + id + ">";
-        str += "<td>" + $("#input_kind").val() + "</td>";
-        str += "<td>" + $("#input_cost").val() + "</td>";
-        str += "<td>" + eval($("#input_cost").val()) + "</td>";
-        str += "<td>" + $("#input_payer").val() + "</td>";
-        str += "<td>" + $("#input_user").val() + "</td>";
+        str += "<td>" + input_kind + "</td>";
+        str += "<td>" + input_cost + "</td>";
+        str += "<td>" + eval(input_cost) + "</td>";
+        str += "<td>" + input_payer + "</td>";
+        str += "<td>" + input_user + "</td>";
         str += "<td><input type=button id='RemoveButton' value='삭제' class='btn btn-primary btn-sm'/></td>";
         str += "</tr>";
         $("#table_logs tbody").append(str);

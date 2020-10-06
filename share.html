@@ -15,19 +15,26 @@
         <table id="table_input" class="table">
             <tr>
                 <th>항목</th>
-                    <th>
-                        <input type="text" id="input_kind" list="list_kind"/>
-                        <datalist id="list_kind">
-                            <option value="차량">차량</option>
-                            <option value="음료수,얼음">음료수,얼음</option>
-                            <option value="아침">아침</option>
-                        </datalist>
-                    </th>
-                <th>금액</th><th><input type="text" id="input_cost"/></th>
+                <th>
+                    <input type="text" id="input_kind" list="list_kind"/>
+                    <datalist id="list_kind">
+                        <option value="차량">차량</option>
+                        <option value="음료수,얼음">음료수,얼음</option>
+                        <option value="아침">아침</option>
+                        <option value="점심">점심</option>
+                    </datalist>
+                </th>
+            <tr>
+                <th>금액</th>
+                <th><input type="text" id="input_cost" placeholder="0.370*400*2"/></th>
             </tr>
             <tr>
-                <th>제공자</th><th><input type="text" id="input_payer"/></th>
-                <th>사용자</th><th><input type="text" id="input_user"/></th>
+                <th>제공자</th>
+                <th><input type="text" id="input_payer"/></th>
+            </tr>
+            <tr>
+                <th>사용자</th>
+                <th><input type="text" id="input_user"/></th>
             </tr>
         </table>
         <input type="button" id="button_add" value="추가" class="btn btn-primary btn-block" />
