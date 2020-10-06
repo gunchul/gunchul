@@ -13,7 +13,7 @@ $(document).ready(function(){
         var input_payer = $("#input_payer").val();
         var input_user = $("#input_user").val();
 
-        if (input_kind.length == 0 || input_payer.length == 0 || input_user.length == 0)
+        if (input_kind.length == 0 || input_cost.length == 0 || input_payer.length == 0 || input_user.length == 0)
         {
             alert("값을 전부 입력하세요.");
             return;
@@ -30,6 +30,8 @@ $(document).ready(function(){
         $("#table_logs tbody").append(str);
         id = id + 1;
         results_update();
+        $("#input_kind").val("");
+        $("#input_cost").val("");
     });
 
     function results_update(){

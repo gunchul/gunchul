@@ -16,7 +16,7 @@
             <tr>
                 <th>항목</th>
                 <th>
-                    <input type="text" id="input_kind" list="list_kind"/>
+                    <input type="text" id="input_kind" list="list_kind" placeholder="예: 차량" required>
                     <datalist id="list_kind">
                         <option value="차량">차량</option>
                         <option value="음료수,얼음">음료수,얼음</option>
@@ -26,18 +26,18 @@
                 </th>
             <tr>
                 <th>금액</th>
-                <th><input type="text" id="input_cost" placeholder="0.370*400*2"/></th>
+                <th><input type="text" id="input_cost" placeholder="예: 0.370*400" pattern="[0-9.+-*/]+" required></th>
             </tr>
             <tr>
                 <th>제공자</th>
-                <th><input type="text" id="input_payer"/></th>
+                <th><input type="text" id="input_payer" placeholder="예: 앤디" required></th>
             </tr>
             <tr>
                 <th>사용자</th>
-                <th><input type="text" id="input_user"/></th>
+                <th><input type="text" id="input_user" placeholder="예: 앤디,ALEX,알와이" required></th>
             </tr>
         </table>
-        <input type="button" id="button_add" value="추가" class="btn btn-primary btn-block" />
+        <input type="button" id="button_add" value="추가" class="btn btn-primary btn-block">
         <p></p>
         <h4>항목</h4>
         <div id="div_logs">
