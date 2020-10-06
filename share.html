@@ -11,15 +11,28 @@
         <link rel="stylesheet" href="./share.css">
     </head>
     <body>
-        <H2>입력</H2>
-        <div id="div_input">
-        <input type="text" class="form-control form-control" value="차량 0.370*200 앤디 알렉스,앤디" id="log" />
-        </div>
-        <div id="div_button">
+        <h4>입력</h4>
+        <table id="table_input" class="table">
+            <tr>
+                <th>항목</th>
+                    <th>
+                        <input type="text" id="input_kind" list="list_kind"/>
+                        <datalist id="list_kind">
+                            <option value="차량">차량</option>
+                            <option value="음료수,얼음">음료수,얼음</option>
+                            <option value="아침">아침</option>
+                        </datalist>
+                    </th>
+                <th>금액</th><th><input type="text" id="input_cost"/></th>
+            </tr>
+            <tr>
+                <th>제공자</th><th><input type="text" id="input_payer"/></th>
+                <th>사용자</th><th><input type="text" id="input_user"/></th>
+            </tr>
+        </table>
         <input type="button" id="button_add" value="추가" class="btn btn-primary btn-block" />
-        </div>
         <p></p>
-        <H2>항목</H2>
+        <h4>항목</h4>
         <div id="div_logs">
         <table id="table_logs" class="table table-sm table-striped table-hover">
             <thead>
@@ -36,8 +49,9 @@
             </tbody>
         </table>
         </div>
+
         <p></p>
-        <H2>종합</H2>
+        <h4>종합</h4>
         <div id="div_results">
         <table id="table_results" class="table table-striped">
             <thead>

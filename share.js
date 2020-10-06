@@ -7,20 +7,13 @@ $(document).ready(function(){
         results_update();
      });
 
-    $("#button_add").click(function(){
-        var values = $("#log").val().split(" ");
-        if (values.length != 4)
-        {
-            alert("Usage: <항목> <비용> <제공자> <사용자>\n차량 0.370*200*2 A,B A,B,C,D");
-            return;
-        }
-            
+    $("#button_add").click(function(){           
         var str = "<tr id=" + id + ">";
-        str += "<td>" + values[0] + "</td>";
-        str += "<td>" + values[1] + "</td>";
-        str += "<td>" + eval(values[1]) + "</td>";
-        str += "<td>" + values[2] + "</td>";
-        str += "<td>" + values[3] + "</td>";
+        str += "<td>" + $("#input_kind").val() + "</td>";
+        str += "<td>" + $("#input_cost").val() + "</td>";
+        str += "<td>" + eval($("#input_cost").val()) + "</td>";
+        str += "<td>" + $("#input_payer").val() + "</td>";
+        str += "<td>" + $("#input_user").val() + "</td>";
         str += "<td><input type=button id='RemoveButton' value='삭제' class='btn btn-primary btn-sm'/></td>";
         str += "</tr>";
         $("#table_logs tbody").append(str);
