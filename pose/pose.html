@@ -1,86 +1,183 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>HELLO</title>
 <meta charset="utf-8">
 </style>
 </head>
 <body>
-  <div>Teachable Machine Pose Model</div>
-<button type="button" onclick="init()">Start</button>
-<div><canvas id="canvas"></canvas></div>
-<div id="label-container"></div>
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
-<script type="text/javascript">
-    // More API functions here:
-    // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/pose
+  <div>Teachable Machine Pose Model1</div>
+    <button type="button" onclick="init()">Start</button>
+    <div><canvas id="canvas"></canvas></div>
+    <div id="label-container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
+    <script type="text/javascript">
+        // More API functions here:
+        // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/pose
 
-    // the link to your model provided by Teachable Machine export panel
-    const URL = "./my_model/";
-    let model, webcam, ctx, labelContainer, maxPredictions;
+        // the link to your model provided by Teachable Machine export panel
+        const URL = "./my_model/";
+        let model, webcam, ctx, labelContainer, maxPredictions;
 
-    async function init() {
-        const modelURL = URL + "model.json";
-        const metadataURL = URL + "metadata.json";
+        async function init() {
+            const modelURL = URL + "model.json";
+            const metadataURL = URL + "metadata.json";
 
-        // load the model and metadata
-        // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
-        // Note: the pose library adds a tmPose object to your window (window.tmPose)
-        model = await tmPose.load(modelURL, metadataURL);
-        maxPredictions = model.getTotalClasses();
+            // load the model and metadata
+            // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+            // Note: the pose library adds a tmPose object to your window (window.tmPose)
+            model = await tmPose.load(modelURL, metadataURL);
+            maxPredictions = model.getTotalClasses();
 
-        // Convenience function to setup a webcam
-        const size = 200;
-        const flip = true; // whether to flip the webcam
-        webcam = new tmPose.Webcam(size, size, flip); // width, height, flip
-        await webcam.setup(); // request access to the webcam
-        await webcam.play();
-        window.requestAnimationFrame(loop);
+            // Convenience function to setup a webcam
+            const size = 400;
+            const flip = true; // whether to flip the webcam
+            webcam = new tmPose.Webcam(size, size, flip); // width, height, flip
+            await webcam.setup(); // request access to the webcam
+            await webcam.play();
+            window.requestAnimationFrame(loop);
 
-        // append/get elements to the DOM
-        const canvas = document.getElementById("canvas");
-        canvas.width = size; canvas.height = size;
-        ctx = canvas.getContext("2d");
-        labelContainer = document.getElementById("label-container");
-        for (let i = 0; i < maxPredictions; i++) { // and class labels
-            labelContainer.appendChild(document.createElement("div"));
-        }
-    }
-
-    async function loop(timestamp) {
-        webcam.update(); // update the webcam frame
-        await predict();
-        window.requestAnimationFrame(loop);
-    }
-
-    async function predict() {
-        // Prediction #1: run input through posenet
-        // estimatePose can take in an image, video or canvas html element
-        const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
-        // Prediction 2: run input through teachable machine classification model
-        const prediction = await model.predict(posenetOutput);
-
-        for (let i = 0; i < maxPredictions; i++) {
-            const classPrediction =
-                prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-            labelContainer.childNodes[i].innerHTML = classPrediction;
-        }
-
-        // finally draw the poses
-        drawPose(pose);
-    }
-
-    function drawPose(pose) {
-        if (webcam.canvas) {
-            ctx.drawImage(webcam.canvas, 0, 0);
-            // draw the keypoints and skeleton
-            if (pose) {
-                const minPartConfidence = 0.5;
-                tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx);
-                tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx);
+            // append/get elements to the DOM
+            const canvas = document.getElementById("canvas");
+            canvas.width = size; canvas.height = size;
+            ctx = canvas.getContext("2d");
+            labelContainer = document.getElementById("label-container");
+            for (let i = 0; i < maxPredictions; i++) { // and class labels
+                labelContainer.appendChild(document.createElement("div"));
             }
         }
-    }
-</script>
+
+        async function loop(timestamp) {
+            webcam.update(); // update the webcam frame
+            await predict();
+            window.requestAnimationFrame(loop);
+        }
+
+        async function predict() {
+            // Prediction #1: run input through posenet
+            // estimatePose can take in an image, video or canvas html element
+            const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
+            // Prediction 2: run input through teachable machine classification model
+            const prediction = await model.predict(posenetOutput);
+
+            for (let i = 0; i < maxPredictions; i++) {
+                const classPrediction =
+                    prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+                labelContainer.childNodes[i].innerHTML = classPrediction;
+            }
+
+            // finally draw the poses
+            drawPose(pose);
+        }
+
+        function drawPose(pose) {
+            if (webcam.canvas) {
+                ctx.drawImage(webcam.canvas, 0, 0);
+                // draw the keypoints and skeleton
+                if (pose) {
+                    const minPartConfidence = 0.5;
+                    tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx);
+                    tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx);
+                }
+            }
+        }
+
+        function playAudio(which) {
+            var x = document.getElementById(which);
+            x.play();
+        }
+
+    </script>
+    <audio id="audio_1">
+    <source src="sound/1.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_2">
+    <source src="sound/2.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_3">
+    <source src="sound/3.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_4">
+    <source src="sound/4.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_5">
+    <source src="sound/5.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_6">
+    <source src="sound/6.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_7">
+    <source src="sound/7.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_8">
+    <source src="sound/8.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_9">
+    <source src="sound/9.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_10">
+    <source src="sound/10.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_11">
+    <source src="sound/11.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_12">
+    <source src="sound/12.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_13">
+    <source src="sound/13.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_14">
+    <source src="sound/14.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_15">
+    <source src="sound/15.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_16">
+    <source src="sound/16.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_17">
+    <source src="sound/17.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_18">
+    <source src="sound/18.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_19">
+    <source src="sound/19.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_20">
+    <source src="sound/20.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_21">
+    <source src="sound/21.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_22">
+    <source src="sound/22.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_23">
+    <source src="sound/23.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_24">
+    <source src="sound/24.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_25">
+    <source src="sound/25.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_26">
+    <source src="sound/26.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_27">
+    <source src="sound/27.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_28">
+    <source src="sound/28.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_29">
+    <source src="sound/29.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio_30">
+    <source src="sound/30.mp3" type="audio/mp3">
+    </audio>
 </body>
 </html>
