@@ -19,6 +19,7 @@
         // the link to your model provided by Teachable Machine export panel
         const URL = "./my_model/";
         let model, webcam, ctx, labelContainer, maxPredictions;
+        let pos_was=true, pos_current, pos_count=0;
 
         async function init() {
             const modelURL = URL + "model.json";
@@ -61,9 +62,30 @@
             // Prediction 2: run input through teachable machine classification model
             const prediction = await model.predict(posenetOutput);
 
+            // 0: DOWN
+            if (prediction[0].probability.toFixed(2) >= 0.5)
+            {
+                pos_current = false;
+            }
+            else
+            {
+                pos_current = true;
+            }
+
+            if (pos_was == true && pos_current == false)
+            {
+                pos_was = false;
+            }
+            else if (pos_was == false && pos_current == true)
+            {
+                pos_was = true;
+                pos_count += 1;
+                playAudio("audio_"+pos_count)
+            }
+
             for (let i = 0; i < maxPredictions; i++) {
                 const classPrediction =
-                    prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+                    prediction[i].className + ": " + prediction[i].probability.toFixed(2) + pos_was + ":" + pos_current + ":" + pos_count;
                 labelContainer.childNodes[i].innerHTML = classPrediction;
             }
 
