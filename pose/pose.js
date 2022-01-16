@@ -10,6 +10,10 @@ let pose_last_state = POSE_START; /* 0:DOWN, 1:UP, 2:START, 3:STOP */
 
 function pose_winner(val0, val1)
 {
+    if (Math.abs(val0 - val1) < 0.3)
+    {
+        return -1;
+    }
     if (val0 >= val1)
     {
         return 0;
@@ -90,6 +94,10 @@ function pose_state_do_at_stop(state) {
 
 function pose_state(state) {
     var was = pose_last_state;
+    if (-1 == state)
+    {
+        return false;
+    }
     if (pose_last_state == state)
     {
         return was != pose_last_state;
