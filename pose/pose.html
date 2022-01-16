@@ -62,23 +62,13 @@
             // Prediction 2: run input through teachable machine classification model
             const prediction = await model.predict(posenetOutput);
             let winner_index = pose_winner(prediction[0].probability.toFixed(2),
-                                          prediction[1].probability.toFixed(2),
-                                          prediction[2].probability.toFixed(2),
-                                          prediction[3].probability.toFixed(2));
+                                          prediction[1].probability.toFixed(2));
             if (pose_state(winner_index))
             {
                 state = pose_state_get();
                 if (1 == state)
                 {
                     audio_play_num(pose_count_get());
-                }
-                else if (2 == state)
-                {
-                    audio_play_text("start");
-                }
-                else if (3 == state)
-                {
-                    audio_play_text("stop");
                 }
             }
             for (let i = 0; i < maxPredictions; i++) {
