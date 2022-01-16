@@ -108,6 +108,10 @@ function pose_state(state) {
     {
         return was != pose_last_state;
     }
+    if (state==POSE_START || state==POSE_STOP)
+    {
+        return false;
+    }
     switch(pose_last_state)
     {
         case POSE_DOWN:
@@ -116,12 +120,12 @@ function pose_state(state) {
         case POSE_UP:
             pose_state_do_at_up(state);
             break;
-        // case POSE_START:
-        //     pose_state_do_at_start(state);
-        //     break;
-        // case POSE_STOP:
-        //     pose_state_do_at_stop(state);
-        //     break;
+        case POSE_START:
+            pose_state_do_at_start(state);
+            break;
+        case POSE_STOP:
+            pose_state_do_at_stop(state);
+            break;
     }
     return was != pose_last_state;
 }
