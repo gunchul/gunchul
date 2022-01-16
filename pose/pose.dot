@@ -1,0 +1,8 @@
+digraph {
+    STOP -> START [label="start"]
+    START -> DOWN [label="down"]
+    DOWN -> UP [label="up"]
+    DOWN -> STOP [label="stop"]
+    UP -> DOWN [label="down"]
+    UP -> STOP [label="stop"]
+}
