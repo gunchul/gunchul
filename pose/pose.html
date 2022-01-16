@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>HELLO</title>
+    <title>POSE</title>
 <meta charset="utf-8">
 </style>
 </head>
 <body>
-  <div>Teachable Machine Pose Model1</div>
+  <div>Teachable Machine Pose Model</div>
     <button type="button" onclick="init()">Start</button>
     <div><canvas id="canvas"></canvas></div>
     <div id="label-container"></div>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
+    <script type="text/javascript" src="audio.js"></script>
     <script type="text/javascript">
         // More API functions here:
         // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/pose
@@ -80,7 +81,7 @@
             {
                 pos_was = true;
                 pos_count += 1;
-                playAudio("audio_"+pos_count)
+                playAudio(pos_count);
             }
 
             for (let i = 0; i < maxPredictions; i++) {
@@ -104,102 +105,6 @@
                 }
             }
         }
-
-        function playAudio(which) {
-            var x = document.getElementById(which);
-            x.play();
-        }
-
     </script>
-    <audio id="audio_1">
-    <source src="sound/1.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_2">
-    <source src="sound/2.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_3">
-    <source src="sound/3.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_4">
-    <source src="sound/4.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_5">
-    <source src="sound/5.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_6">
-    <source src="sound/6.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_7">
-    <source src="sound/7.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_8">
-    <source src="sound/8.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_9">
-    <source src="sound/9.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_10">
-    <source src="sound/10.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_11">
-    <source src="sound/11.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_12">
-    <source src="sound/12.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_13">
-    <source src="sound/13.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_14">
-    <source src="sound/14.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_15">
-    <source src="sound/15.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_16">
-    <source src="sound/16.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_17">
-    <source src="sound/17.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_18">
-    <source src="sound/18.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_19">
-    <source src="sound/19.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_20">
-    <source src="sound/20.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_21">
-    <source src="sound/21.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_22">
-    <source src="sound/22.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_23">
-    <source src="sound/23.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_24">
-    <source src="sound/24.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_25">
-    <source src="sound/25.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_26">
-    <source src="sound/26.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_27">
-    <source src="sound/27.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_28">
-    <source src="sound/28.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_29">
-    <source src="sound/29.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio_30">
-    <source src="sound/30.mp3" type="audio/mp3">
-    </audio>
 </body>
 </html>
