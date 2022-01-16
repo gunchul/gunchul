@@ -7,8 +7,9 @@
     <script type="text/javascript" src="pose.js"></script>
 </head>
 <body>
-    <div>Teachable Machine Pose Model</div>
     <button type="button" onclick="init()">Start</button>
+    <button type="button" onclick="pos_stop()">Pos Stop</button>
+    <button type="button" onclick="pos_start()">Pos Start</button>
     <div><canvas id="canvas"></canvas></div>
     <div id="label-container"></div>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
@@ -20,6 +21,16 @@
         // the link to your model provided by Teachable Machine export panel
         const URL = "https://teachablemachine.withgoogle.com/models/oCLlwX8K9/";
         let model, webcam, ctx, labelContainer, maxPredictions;
+
+        function pos_start() {
+            pose_state(2);
+            audio_play_text("start");
+        }
+
+        function pos_stop() {
+            pose_state(3);
+            audio_play_text("stop");
+        }
 
         async function init() {
             const modelURL = URL + "model.json";
