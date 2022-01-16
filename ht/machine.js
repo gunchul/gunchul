@@ -2,22 +2,21 @@
 // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/pose
 
 // the link to your model provided by Teachable Machine export panel
-const URL = "https://teachablemachine.withgoogle.com/models/oCLlwX8K9/";
 let model, webcam, ctx, labelContainer, maxPredictions;
 
-function pos_start() {
-    pose_state(2);
+function machine_start() {
+    pose_state(POSE_START);
     audio_play_text("start");
 }
 
-function pos_stop() {
-    pose_state(3);
+function machine_stop() {
+    pose_state(POSE_STOP);
     audio_play_text("stop");
 }
 
-async function init() {
-    const modelURL = URL + "model.json";
-    const metadataURL = URL + "metadata.json";
+async function machine_init(machine_url) {
+    const modelURL = machine_url + "model.json";
+    const metadataURL = machine_url + "metadata.json";
 
     // load the model and metadata
     // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
@@ -41,6 +40,7 @@ async function init() {
     for (let i = 0; i < maxPredictions; i++) { // and class labels
         labelContainer.appendChild(document.createElement("div"));
     }
+    pose_init();
 }
 
 async function loop(timestamp) {

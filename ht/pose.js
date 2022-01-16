@@ -120,6 +120,12 @@ function pose_state(state) {
     return was != pose_last_state;
 }
 
+function pose_init()
+{
+    pos_count = 0;
+    pose_last_state = POSE_START;
+}
+
 function pose_state_get() {
     return pose_last_state;
 }
