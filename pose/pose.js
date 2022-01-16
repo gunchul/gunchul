@@ -5,10 +5,10 @@ const POSE_START = 2;
 const POSE_STOP = 3;
 const POSE_COUNT_MAX = 100;
 
-var pos_count = 0;
-var pose_last_state = POSE_STOP; /* 0:DOWN, 1:UP, 2:START, 3:STOP */
+let pos_count = 0;
+let pose_last_state = POSE_STOP; /* 0:DOWN, 1:UP, 2:START, 3:STOP */
 
-function pos_winner(val0, val1, val2, val3)
+function pose_winner(val0, val1, val2, val3)
 {
     let max_val = val0;
     let max_index = 0;
@@ -111,16 +111,16 @@ function pose_state(state) {
     switch(pose_last_state)
     {
         case POSE_DOWN:
-            pose_state_do_at_down();
+            pose_state_do_at_down(state);
             break;
         case POSE_UP:
-            pose_state_do_at_up();
+            pose_state_do_at_up(state);
             break;
         case POSE_START:
-            pose_state_do_at_start();
+            pose_state_do_at_start(state);
             break;
         case POSE_STOP:
-            pose_state_do_at_stop();
+            pose_state_do_at_stop(state);
             break;
     }
     return was != pose_last_state;
