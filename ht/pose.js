@@ -14,7 +14,7 @@ function pose_winner(val0, val1)
     {
         if (val1 >= 0.7)
         {
-            return 0;
+            return 1;
         }
     }
     else if (POSE_UP == pose_last_state)
