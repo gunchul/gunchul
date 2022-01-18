@@ -10,15 +10,21 @@ let pose_last_state = POSE_START; /* 0:DOWN, 1:UP, 2:START, 3:STOP */
 
 function pose_winner(val0, val1)
 {
-    if (Math.abs(val0 - val1) < 0.3)
+    if (POSE_DOWN == pose_last_state)
     {
-        return -1;
+        if (val1 >= 0.7)
+        {
+            return 0;
+        }
     }
-    if (val0 >= val1)
+    else if (POSE_UP == pose_last_state)
     {
-        return 0;
+        if (val0 >= 0.7)
+        {
+            return 0;
+        }
     }
-    return 1;
+    return -1;
 }
 
 /*
