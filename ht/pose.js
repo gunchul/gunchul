@@ -13,13 +13,13 @@ function pose_next_state(down_value)
     switch(pose_last_state)
     {
         case POSE_DOWN:
-            if (down_value < 0.3)
+            if (down_value < 0.5)
             {
                 return POSE_UP;
             }
             return -1;
         case POSE_UP:
-            if (down_value >= 0.7)
+            if (down_value >= 0.8)
             {
                 return POSE_DOWN;
             }
