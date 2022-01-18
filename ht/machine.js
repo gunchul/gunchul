@@ -55,8 +55,7 @@ async function predict() {
     const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
     // Prediction 2: run input through teachable machine classification model
     const prediction = await model.predict(posenetOutput);
-    let winner_index = pose_winner(prediction[0].probability.toFixed(2),
-                                    prediction[1].probability.toFixed(2));
+    let winner_index = pose_next_state(prediction[0].probability.toFixed(2));
     if (pose_state(winner_index))
     {
         state = pose_state_get();

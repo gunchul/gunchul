@@ -8,23 +8,31 @@ const POSE_COUNT_MAX = 100;
 let pos_count = 0;
 let pose_last_state = POSE_START; /* 0:DOWN, 1:UP, 2:START, 3:STOP */
 
-function pose_winner(val0, val1)
+function pose_next_state(down_value)
 {
-    if (POSE_DOWN == pose_last_state)
+    switch(pose_last_state)
     {
-        if (val1 >= 0.7)
-        {
-            return 1;
-        }
+        case POSE_DOWN:
+            if (down_value < 0.3)
+            {
+                return POSE_UP;
+            }
+            return -1;
+        case POSE_UP:
+            if (down_value >= 0.7)
+            {
+                return POSE_DOWN;
+            }
+            return -1;
+        case POSE_START:
+            if (down_value >= 0.7)
+            {
+                return POSE_DOWN;
+            }
+            return -1;
+        case POSE_STOP:
+            return -1;
     }
-    else if (POSE_UP == pose_last_state)
-    {
-        if (val0 >= 0.7)
-        {
-            return 0;
-        }
-    }
-    return -1;
 }
 
 /*
