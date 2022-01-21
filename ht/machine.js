@@ -65,7 +65,7 @@ async function predict() {
     trigger = pose_trigger_get(down_value, up_value);
     if (POSE_TRIGGER_DOWN == trigger || POSE_TRIGGER_UP == trigger)
     {
-        if (pose_trigger(trigger) == true)
+        if (pose_trigger(trigger))
         {
             audio_play_num(pose_count_get());
         }
