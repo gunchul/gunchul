@@ -5,12 +5,12 @@
 let model, webcam, ctx, labelContainer, maxPredictions;
 
 function machine_start() {
-    pose_state(POSE_START);
+    pose_trigger(POSE_TRIGGER_INIT);
     audio_play_text("start");
 }
 
 function machine_stop() {
-    pose_state(POSE_STOP);
+    pose_trigger(POSE_TRIGGER_STOP);
     audio_play_text("stop");
 }
 
@@ -56,16 +56,15 @@ async function predict() {
     // Prediction 2: run input through teachable machine classification model
     const prediction = await model.predict(posenetOutput);
 
-    let winner_index = pose_next_state(prediction[0].probability.toFixed(2),
-                                       prediction[1].probability.toFixed(2),
-                                       prediction[2].probability.toFixed(2));
-    if (pose_state(winner_index))
+    let down_value = prediction[0].probability;
+    let up_value = prediction[1].probability;
+
+    // finally draw the poses
+    drawPose(pose);
+
+    if (pose_value_inject(down_value, up_value))
     {
-        state = pose_state_get();
-        if (1 == state)
-        {
-            audio_play_num(pose_count_get());
-        }
+        audio_play_num(pose_count_get());
     }
 
     for (let i = 0; i < maxPredictions; i++) {
@@ -74,9 +73,6 @@ async function predict() {
 
         labelContainer.childNodes[i].innerHTML = classPrediction;
     }
-
-    // finally draw the poses
-    drawPose(pose);
 }
 
 function drawPose(pose) {
