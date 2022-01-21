@@ -1,31 +1,32 @@
 
 const POSE_DOWN = 0;
 const POSE_UP = 1;
-const POSE_START = 2;
-const POSE_STOP = 3;
+const POSE_UNDEFINED = 2;
+const POSE_START = 3;
+const POSE_STOP = 4;
 const POSE_COUNT_MAX = 100;
 
 let pos_count = 0;
-let pose_last_state = POSE_START; /* 0:DOWN, 1:UP, 2:START, 3:STOP */
+let pose_last_state = POSE_START;
 
-function pose_next_state(down_value)
+function pose_next_state(down_value, up_value, undefined_value)
 {
     switch(pose_last_state)
     {
         case POSE_DOWN:
-            if (down_value < 0.5)
+            if (up_value >= 0.6)
             {
                 return POSE_UP;
             }
             return -1;
         case POSE_UP:
-            if (down_value >= 0.8)
+            if (down_value >= 0.6)
             {
                 return POSE_DOWN;
             }
             return -1;
         case POSE_START:
-            if (down_value >= 0.7)
+            if (down_value >= 0.6)
             {
                 return POSE_DOWN;
             }
@@ -33,6 +34,7 @@ function pose_next_state(down_value)
         case POSE_STOP:
             return -1;
     }
+    return -1;
 }
 
 /*
