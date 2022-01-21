@@ -20,19 +20,14 @@ function pose_trigger_get(down_value, up_value)
     switch(pose_state)
     {
         case POSE_STATE_DOWN:
-            if (up_value >= 0.6)
+            if (up_value >= 0.7)
             {
                 return POSE_TRIGGER_UP;
             }
             break;
-        case POSE_STATE_UP:
-            if (down_value >= 0.6)
-            {
-                return POSE_TRIGGER_DOWN;
-            }
-            break;
         case POSE_STATE_START:
-            if (down_value >= 0.6)
+        case POSE_STATE_UP:
+            if (down_value >= 0.7)
             {
                 return POSE_TRIGGER_DOWN;
             }
@@ -44,7 +39,8 @@ function pose_trigger_get(down_value, up_value)
 /*
     STOP -> START
 */
-function pose_state_do_at_down(trigger) {
+function pose_state_do_at_down(trigger)
+{
     switch(trigger)
     {
         case POSE_TRIGGER_UP:
@@ -119,13 +115,12 @@ function pose_trigger(trigger)
             pose_state_do_at_stop(trigger);
             break;
     }
-    return was != pose_state;
-}
 
-function pose_value_inject(down_value, up_value)
-{
-    let trigger = pose_trigger_get(down_value, up_value);
-    return pose_trigger(trigger);
+    if (pose_state == POSE_STATE_UP && pose_state != was)
+    {
+        return true;
+    }
+    return false;
 }
 
 function pose_init()

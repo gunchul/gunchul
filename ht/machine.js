@@ -59,12 +59,13 @@ async function predict() {
     let down_value = prediction[0].probability;
     let up_value = prediction[1].probability;
 
-    // finally draw the poses
+    // draw the poses
     drawPose(pose);
 
-    if (pose_value_inject(down_value, up_value))
+    trigger = pose_trigger_get(down_value, up_value);
+    if (POSE_TRIGGER_DOWN == trigger || POSE_TRIGGER_UP == trigger)
     {
-        if (pose_state_get() == POSE_STATE_UP)
+        if (pose_trigger(trigger) == true)
         {
             audio_play_num(pose_count_get());
         }
