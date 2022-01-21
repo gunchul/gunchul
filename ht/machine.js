@@ -64,7 +64,10 @@ async function predict() {
 
     if (pose_value_inject(down_value, up_value))
     {
-        audio_play_num(pose_count_get());
+        if (pose_state_get() == POSE_STATE_UP)
+        {
+            audio_play_num(pose_count_get());
+        }
     }
 
     for (let i = 0; i < maxPredictions; i++) {
