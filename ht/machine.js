@@ -59,9 +59,6 @@ async function predict() {
     let down_value = prediction[0].probability;
     let up_value = prediction[1].probability;
 
-    // draw the poses
-    drawPose(pose);
-
     trigger = pose_trigger_get(down_value, up_value);
     if (POSE_TRIGGER_DOWN == trigger || POSE_TRIGGER_UP == trigger)
     {
@@ -71,12 +68,16 @@ async function predict() {
         }
     }
 
-    for (let i = 0; i < maxPredictions; i++) {
+    for (let i = 0; i < maxPredictions; i++)
+    {
         const classPrediction =
             prediction[i].className + ": " + prediction[i].probability.toFixed(2) + ": " + pose_count_get();
 
         labelContainer.childNodes[i].innerHTML = classPrediction;
     }
+
+    // draw the poses
+    drawPose(pose);
 }
 
 function drawPose(pose) {
