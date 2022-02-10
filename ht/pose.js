@@ -51,9 +51,6 @@ function pose_state_do_at_down(trigger)
             }
             pose_state = POSE_STATE_UP;
             break;
-        case POSE_TRIGGER_STOP:
-            pose_state = POSE_STATE_STOP;
-            break;
     }
 }
 
@@ -63,9 +60,6 @@ function pose_state_do_at_up(trigger)
     {
         case POSE_TRIGGER_DOWN:
             pose_state = POSE_STATE_DOWN;
-            break;
-        case POSE_TRIGGER_STOP:
-            pose_state = POSE_STATE_STOP;
             break;
     }
 }
@@ -81,16 +75,6 @@ function pose_state_do_at_start(trigger)
     }
 }
 
-function pose_state_do_at_stop(trigger)
-{
-    switch(trigger)
-    {
-        case POSE_TRIGGER_START:
-            pose_state = POSE_STATE_START;
-            break;
-    }
-}
-
 function pose_trigger(trigger)
 {
     let was = pose_state;
@@ -98,6 +82,18 @@ function pose_trigger(trigger)
     if (POSE_TRIGGER_UNDEFINED == trigger)
     {
         return false;
+    }
+
+    switch(trigger)
+    {
+        case POSE_TRIGGER_UNDEFINED:
+            return false;
+        case POSE_TRIGGER_STOP:
+            pose_state = POSE_STATE_STOP;
+            return true;
+        case POSE_TRIGGER_START:
+            pose_state = POSE_STATE_START;
+            return true;
     }
 
     switch(pose_state)
