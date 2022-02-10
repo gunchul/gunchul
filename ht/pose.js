@@ -20,14 +20,14 @@ function pose_trigger_get(down_value, up_value)
     switch(pose_state)
     {
         case POSE_STATE_DOWN:
-            if (up_value >= 0.7)
+            if (up_value >= 0.6)
             {
                 return POSE_TRIGGER_UP;
             }
             break;
         case POSE_STATE_START:
         case POSE_STATE_UP:
-            if (down_value >= 0.7)
+            if (down_value >= 0.6)
             {
                 return POSE_TRIGGER_DOWN;
             }
