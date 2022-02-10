@@ -5,7 +5,7 @@
 let model, webcam, ctx, labelContainer, maxPredictions;
 
 function machine_start() {
-    pose_trigger(POSE_TRIGGER_INIT);
+    pose_trigger(POSE_TRIGGER_START);
     audio_play_text("start");
 }
 
