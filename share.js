@@ -1,4 +1,4 @@
-/* aaa 10*10 a,b A,B,C */ 
+/* aaa 10*10 a,b A,B,C */
 $(document).ready(function(){
     var id = 0;
 
@@ -61,13 +61,14 @@ $(document).ready(function(){
             }
             for (j = 0; j < users.length; j++)
             {
-                if (persons[users[j]] == null)
+                user = users[j].trim();
+                if (persons[user] == null)
                 {
-                    persons[users[j]] = user_cost;
+                    persons[user] = user_cost;
                 }
                 else
                 {
-                    persons[users[j]] += user_cost ;
+                    persons[user] += user_cost;
                 }
             }
         }
